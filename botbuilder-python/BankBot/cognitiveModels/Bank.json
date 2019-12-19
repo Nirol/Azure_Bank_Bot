@@ -1,0 +1,2175 @@
+{
+  "luis_schema_version": "4.0.0",
+  "versionId": "0.1",
+  "name": "Bank",
+  "desc": "",
+  "culture": "en-us",
+  "tokenizerVersion": "1.0.0",
+  "intents": [
+    {
+      "name": "Bank.PayCheck.CheckAvgSalary"
+    },
+    {
+      "name": "Bank.PayCheck.CheckLastBonus"
+    },
+    {
+      "name": "Bank.PayCheck.CheckLastSalary"
+    },
+    {
+      "name": "Bank.PayCheck.CheckSalaryYTD"
+    },
+    {
+      "name": "Bank.PayCheck.Salary"
+    },
+    {
+      "name": "None"
+    }
+  ],
+  "entities": [
+    {
+      "name": "average",
+      "roles": []
+    },
+    {
+      "name": "avg",
+      "roles": []
+    },
+    {
+      "name": "bonus",
+      "roles": []
+    },
+    {
+      "name": "gross",
+      "roles": []
+    },
+    {
+      "name": "last",
+      "roles": []
+    },
+    {
+      "name": "net",
+      "roles": []
+    },
+    {
+      "name": "State tax",
+      "roles": []
+    },
+    {
+      "name": "this month",
+      "roles": []
+    },
+    {
+      "name": "year",
+      "roles": []
+    },
+    {
+      "name": "year to date",
+      "roles": []
+    }
+  ],
+  "composites": [
+    {
+      "name": "Paycheck",
+      "children": [
+        "bonus",
+        "Salary",
+        "State tax",
+        "federal tax",
+        "year to date",
+        "average"
+      ],
+      "roles": [
+        "Year to date",
+        "Last"
+      ]
+    },
+    {
+      "name": "tax",
+      "children": [
+        "State tax",
+        "federal tax"
+      ],
+      "roles": []
+    },
+    {
+      "name": "type_pay",
+      "children": [
+        "gross",
+        "net"
+      ],
+      "roles": []
+    }
+  ],
+  "closedLists": [
+    {
+      "name": "federal tax",
+      "subLists": [
+        {
+          "canonicalForm": "irs",
+          "list": []
+        },
+        {
+          "canonicalForm": "federal income tax",
+          "list": []
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "now",
+      "subLists": [
+        {
+          "canonicalForm": "today",
+          "list": []
+        }
+      ],
+      "roles": []
+    },
+    {
+      "name": "Salary",
+      "subLists": [
+        {
+          "canonicalForm": "salary",
+          "list": [
+            "pay",
+            "income",
+            "payroll",
+            "wage",
+            "earnings",
+            "paycheck"
+          ]
+        }
+      ],
+      "roles": [
+        "Average",
+        "Current",
+        "Net",
+        "Gross"
+      ]
+    }
+  ],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [
+    {
+      "name": "dimension",
+      "roles": []
+    },
+    {
+      "name": "money",
+      "roles": []
+    },
+    {
+      "name": "number",
+      "roles": []
+    }
+  ],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "2 pm meeting tomorrow - who else is going",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "2 pm meeting with who",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept all meetings for christmas party next week.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept my meeting at 7pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept my meeting at tomorrow 10am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept the appointment from 3pm to 5pm.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept the appointment on january 18th in palace meeting room.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept the event for tonight.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept the event on feb. 18 in beijing.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept the meeting held on tomorrow at room 301",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept the meeting with mary and tom held on wednesday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept this appointment with jane and mary on next tuesday.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept today's event at 3pm.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "accept today's meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "add location to favorites",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "at 10 am do i have a 30 minutes meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "attend the lunch meeting at 10:30 am.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "attend the meeting held at 3pm next tuesday at the conference center.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "attendees who will join the 5 pm meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "average salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "average",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "bing find me a conference room in the bravern this afternoon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "book the conference room for thursday at one i want to meet with benjamin",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "calendar for today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "can you change it to 5 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "can you move this appointment to 5pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel 1 pm staff meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel appointment today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel doctor ' s appointment monday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel event tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel lunch next wednesday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel meeting with abigail 3 pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel meeting with bob marlon 3pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel my appointment at 9 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel my appointment for october 4",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel my driving lesson tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel my meeting at shanghai on monday at 10 am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel my singing appointment on monday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel the untitled event on may twenty eighth",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel today ' s appointment",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "cancel tomorrow ' s plan",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change big event to tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change it to 5pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change lunch appt to 2",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change lunch date from 11 - 12 to 12 - 1 30",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change marathon training from 8:00am to 1:00pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change marketing meeting from every tuesday to every wednesdays",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change meeting from 2-3pm to 4-5pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change meeting from 2pm-3pm to 4pm-5pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 11pm appointment's location to green park",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 3pm event to 4pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 6pm event to 7pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 7 30 pm appointment to 8 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 7pm event to 6pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 8 till 9 appointment to 11 till 12",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my 9 30 till 10 30 appointment to 9 30 till 5",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my appointmnet with sarah to 5 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my dentist appointment from 3:30 to 4",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change my meeting at night to tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change shave tomorrow 8 30",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change the meeting which will start at 2 pm to 3 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change the time to eleven thirty am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change today 's meeting from 6pm to tomorrow 9am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change today 's meeting from 6pm to tomorrow 9pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "change tomorrow ' s appointment from 10am to wednesday at 9 am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "check janice 's calendar for this weekend",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "check meeting room for tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "clear all of my appointments today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "clear all the appointments from my calendar for today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "clear my calendar for january 29th",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "clear my schedule for tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "clear my schedule today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "connect me to 10 00 conf call with bryan",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "connect me with my 2 o clock meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "connect to conference call now",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "decline my meeting on monday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "delete my schedule for today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "detail about tomorrow's meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "did hellen come to 3 pm's meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "did i receive a bonus on last month paycheck",
+      "intent": "Bank.PayCheck.CheckLastBonus",
+      "entities": [
+        {
+          "entity": "bonus",
+          "startPos": 16,
+          "endPos": 20
+        },
+        {
+          "entity": "last",
+          "startPos": 25,
+          "endPos": 34
+        }
+      ]
+    },
+    {
+      "text": "did mark sign up to the tomorrow's meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "did martin come to today's meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "display map for sacramento plastic surgery",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "distance between my home to tesco",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "do i have any appointments today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "do i have any meetings today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "do i have anything from 11 to 2",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "do i have anything on wednesday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "do i have anything today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "drop my appointment for monday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find a free meeting room for next tuesday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find a meeting at 7pm from melissa",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find an available meeting room from 3 to 5 tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find attendees who will attend 8 o ' clock meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find me the meetings at 6",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find me the meetings at 9 o'clock",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find the meeting around 2 to 6pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "find the meeting around 5 to 8 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "gross avg salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 0,
+          "endPos": 4
+        },
+        {
+          "entity": "avg",
+          "startPos": 6,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "help me to book a meeting room from 10 am to 3 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how big was my last bonus",
+      "intent": "Bank.PayCheck.CheckLastBonus",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 15,
+          "endPos": 18
+        },
+        {
+          "entity": "bonus",
+          "startPos": 20,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "how far am i from fifty first avenue and indian school",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far away from school am i",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far i am from my work place",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is it from here to home",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is it from here to work",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is it from home to new haven missouri",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is it to from here",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is it to mum and dad s house",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is it to street",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is mcdonalds from my home",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is rite aid from acme",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far is the home depot from lowe s",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how far to mom and dad's",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how long is it until the 14th of march",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how long is my 4 o'clock meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how long is my lunch today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how long is my meeting at 4",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days is it until christmas",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days till april",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days till christmas",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days until june the fifteenth",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days until june the fifteenth 2019",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days until march twenty six",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days until thanksgiving",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how many days until the 10th of december",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time between schedule thursday meetings next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time do i have for a lunch break today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time do i have for lunch today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time do we have for lunch today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time for lunch today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time is open today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "how much time until noon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i want to meet with bruce lee so book the conference room for thursday at one",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i want to meet with donna please book for thursday the conference room at one",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'll attend the meeting at 2pm tomorrow in room 304",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'll attend the meeting this afternoon.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "i'm not available next monday afternoon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "is this room busy at 5 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "is this room busy tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "join current budget conf call",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "join current conference",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "join current conference call",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "join meeting now",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "last month bonus",
+      "intent": "Bank.PayCheck.CheckLastBonus",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 0,
+          "endPos": 9
+        },
+        {
+          "entity": "bonus",
+          "startPos": 11,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "last month net earnings",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 0,
+          "endPos": 9
+        },
+        {
+          "entity": "net",
+          "startPos": 11,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "last wage i received",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "let 5 pm meeting starting at 3",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "let's rate microsoft visitor center 5 stars on google map",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "list the participants for the 2 pm meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "location of 11 am meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "meeting at 3 pm today locations",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move 3pm meeting to 4pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move appt with rebecca to next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move meeting from 9pm-10pm to 8pm-9pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my 10 past 10 doctor ' s appointment to 10",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my 10pm meeting to 9pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my 12 pm meeting to 2",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my 4 pm to 5 pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my 9 am doctor ' s appointment to 10 am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my 9pm meeting to 8pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move my meeting to 6pm from 7pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move party planning meeting from saturday to friday at 1pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "move shoe appointment to tuesday at one",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "my bonus",
+      "intent": "Bank.PayCheck.CheckLastBonus",
+      "entities": [
+        {
+          "entity": "bonus",
+          "startPos": 3,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "my gross average salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 3,
+          "endPos": 7
+        },
+        {
+          "entity": "average",
+          "startPos": 9,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "my gross avg salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 3,
+          "endPos": 7
+        },
+        {
+          "entity": "avg",
+          "startPos": 9,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "my gross income",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 3,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "my net average salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 3,
+          "endPos": 5
+        },
+        {
+          "entity": "average",
+          "startPos": 7,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "my net avg salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 3,
+          "endPos": 5
+        },
+        {
+          "entity": "avg",
+          "startPos": 7,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "my net income",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "my salary",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "my salary this year",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": []
+    },
+    {
+      "text": "my salary until today",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": []
+    },
+    {
+      "text": "my total salary till today",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": []
+    },
+    {
+      "text": "my year average salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "year to date",
+          "startPos": 3,
+          "endPos": 6
+        },
+        {
+          "entity": "average",
+          "startPos": 8,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "net avg salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 0,
+          "endPos": 2
+        },
+        {
+          "entity": "avg",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "new location for meeting this afternoon let others attendees know meeting is now in room 100",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "no, i already have meeting 3pm tomorrow afternoon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "not this saturday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "notify friday's 2 pm that we are cancelling the meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "notify people of meeting on tue that it will begin 15-30 min later",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "please advise i am late for 3 pm meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "please alert 3 o ' clock meeting attendees",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "please move this to 3 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "postpone my 4 pm meeting today until 5 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "postpone my four p. m. meeting today until five p. m.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "received benefits this month",
+      "intent": "Bank.PayCheck.CheckLastBonus",
+      "entities": []
+    },
+    {
+      "text": "remind all attendees of tomorrow ' s lunch that we have changed the venue",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reschedule appointment with jennifer to next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reschedule my 3:30 dentist appointment to 4",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reschedule my 3:30 dentist appointment today for 4pm tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reschedule my interview on monday to 1 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reschedule the 2 pm class to half past 2",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reserve the conference room for 1 pm thursday because i need to have a meeting with amber",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "reserve the conference room for 3pm tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "room 100 is location for this afternoon ' s meeting please notify others",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "salary",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "salary caht",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "salary chat",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "salary options",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "save my location on map",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "save my location to my map",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "schedule conference room with mary cooper for thursday at one",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "send reminder of 9 am meeting to all participants 15 minutes later",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show me brenda 's schedule for friday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show me my calendar for monday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show me my schedule tonight",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show me the calendar at night",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show me victoria 's calendar for monday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show me who will be at planning meeting tomorrow at 2 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show my schedule at night",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show salary dialog",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "tell me about my meeting today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "tell me about my schedule with afternoon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "tell me about my sunday schedule",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "tell me how long is my 4 oclock meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "tell me how long is today ' s lunch break",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "the address and how to get there",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "the address i want the address",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "this meeting should be changed to tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "this month salary",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "this month",
+          "startPos": 5,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "this year average salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "year",
+          "startPos": 5,
+          "endPos": 8
+        },
+        {
+          "entity": "average",
+          "startPos": 10,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "this year avg salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "year",
+          "startPos": 5,
+          "endPos": 8
+        },
+        {
+          "entity": "avg",
+          "startPos": 10,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "today ' s lunch will be how long",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "total lunch break time today please",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "update meeting from 8am-12pm to 7am-11am today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "update my calendar from 11 to 12:30 today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "update my calendar from 2 pm to 4 pm today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "update my calendar from 6pm to 7pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "update my tomorrow 6pm meeting to 7pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s going on this weekend",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s happening today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s in my calendar for today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s my 1st appointment tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s my 1st meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s my schedule for tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s my schedule like tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s my schedule tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s on my calendar for today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s on my calendar today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s on my schedule for tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s on my schedule today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what ' s the meeting today between 10 and 12:00",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what am i doing next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what am i doing on june ninth",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what am i doing tonight",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what appointments do i have tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what are my appointments for this week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what are my appointments today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what are my meetings at night",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what are the particulars for the picnic next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what did the sister say about meeting on sunday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have for today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have from 2 to 4 on saturday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have from monday through wednesday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have going on today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have on my calendar today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have on sunday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have this afternoon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have to do this afternoon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have to do tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what do i have tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what have i got on tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what i am doing next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what i'm doing this weekend",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is destiny ' s event for next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is henry doing on monday at noon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is logan 's schedule this week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is my 1st meeting today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is my average salary",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "average",
+          "startPos": 11,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "what is my schedule for tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is my schedule tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is my total salary",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": []
+    },
+    {
+      "text": "what is my year salary",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "year to date",
+          "startPos": 11,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "what is on my calendar today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is the address for my bus stop",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is the distance between my current location and",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what is timothy doing today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what meetings do i have next week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time do i have work tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time do i work today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time is beth over today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time is my cooking class tonight",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time is my first meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time is my meeting today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time is my mobile devices exam tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what time is the trade show this saturday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what was my last bonus",
+      "intent": "Bank.PayCheck.CheckLastBonus",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 12,
+          "endPos": 15
+        },
+        {
+          "entity": "bonus",
+          "startPos": 17,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "what was my last salary?",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 12,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "what was my salary last month",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": []
+    },
+    {
+      "text": "what was my wage",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": []
+    },
+    {
+      "text": "what's going on this week",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what's happening tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what's my average salary ?",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "average",
+          "startPos": 10,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "what's my first meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "what's my net income",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 10,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "what's my year average salary ?",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "year to date",
+          "startPos": 10,
+          "endPos": 13
+        },
+        {
+          "entity": "average",
+          "startPos": 15,
+          "endPos": 21
+        }
+      ]
+    },
+    {
+      "text": "when ' s my 1st appointment tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when ' s my 1st meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when do i have free time today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when do i work tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when is my 1st meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when is my picnic lunch today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when is ncaa basketball today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "when is the wedding tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where am i going this weekend",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where am i going tonight",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where am i on may the twenty first",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where am i tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where are my meetings today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where do i go for my meeting tomorrow at 11 am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where do i go tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where do i have to be today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where do i need to go today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is bus stop 77",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is meeting tomorrow at 11 am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my 11 am appointment tomorrow happening",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my 11 am meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my eleven o'clock meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my first appointment tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my fourth event with brandon friday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my fourth event with christopher on thursday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is my home address",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is the meeting at 11 am tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is tomorrow ' s 11 am meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is tomorrow meeting at 11 am",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "where is tomorrow 's event",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "which weekend am i shopping with sarah",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who ' s in my 1st meeting today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who am i meeting at 10 am tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who else is going to the 2pm meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is attending 2 pm meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is attending the meeting on wednesday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is coming the the meeting tomorrow at 2 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is going to attend the meeting tomorrow at 2 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is going to the meeting at 2 pm tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is going to tomorrow ' s meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is my first meeting with tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is my morning meeting with",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is on my list for the 2 pm meeting tomorrow",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is participating tomorrow at 2 pm meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who is the 2 pm meeting with",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who shall be joining the meeting tomorrow at 2 pm",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "who will attend the meeting at 4",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will amber join office meeting today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will amy be at today ' s meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will george be in the hr meeting at 1 o' clock",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will jane be at the 3 pm meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will johnny be at office meeting today",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will nancy be at the morning briefing meeting",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will paul be going to the meeting on friday",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "will thomas be in insurance meeting monday at noon",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "ytd salary",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "year to date",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    }
+  ],
+  "settings": []
+}
