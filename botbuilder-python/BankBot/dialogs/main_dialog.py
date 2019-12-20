@@ -53,17 +53,10 @@ class MainDialog(ComponentDialog):
                 )
             )
             return await step_context.next(None)
-        message_text = (
-            str(step_context.options)
-            if step_context.options
-            else "What can I help you with today?"
-        )
-        prompt_message = MessageFactory.text(
-            message_text, message_text, InputHints.expecting_input
-        )
-
+        prompt_entry_message = dialog_helper.get_prompt_message(
+            dialog_helper.PromptMessage.ENTRY_MSG)
         return await step_context.prompt(
-            TextPrompt.__name__, PromptOptions(prompt=prompt_message)
+            TextPrompt.__name__, PromptOptions(prompt=prompt_entry_message)
         )
 
 
@@ -74,7 +67,7 @@ class MainDialog(ComponentDialog):
                 self._salary_net_gross_dialog_id, SalaryDetails()
             )
 
-        # Call LUIS and gather any potential salary details. (Note the TurnContext has the response to the prompt.)
+        # Call LUIS and gather any potential bank operation  details.
         intent, luis_result = await LuisHelper.execute_luis_query(
             self._luis_recognizer, step_context.context
         )
@@ -88,7 +81,7 @@ class MainDialog(ComponentDialog):
             return await step_context.begin_dialog(self._salary_net_gross_dialog_id, luis_result)
 
         if intent == Intent.GENERAL_SALARY.value:
-            # Run the salary net gross dialog giving it whatever details we have from the LUIS call.
+            # Run general salary dialog, complete data required from the user
             return await step_context.begin_dialog(
                 self._general_salary_dialog_id, luis_result)
 
@@ -101,5 +94,6 @@ class MainDialog(ComponentDialog):
         return await step_context.next(None)
 
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
-        prompt_message = "What else can I do for you?"
+        prompt_message = dialog_helper.get_prompt_message(
+            dialog_helper.PromptMessage.WHAT_ELSE_MSG)
         return await step_context.replace_dialog(self.id, prompt_message)

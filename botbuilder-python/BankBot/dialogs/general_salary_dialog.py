@@ -3,6 +3,8 @@
 
 from datatypes_date_time.timex import Timex
 
+import dialog_helper
+import salary_details
 from botbuilder.dialogs import WaterfallDialog, WaterfallStepContext, DialogTurnResult
 from botbuilder.dialogs.prompts import ConfirmPrompt, TextPrompt, PromptOptions
 from botbuilder.core import MessageFactory
@@ -24,6 +26,7 @@ class GeneralSalaryDialog(CancelAndHelpDialog):
             WaterfallDialog(
                 WaterfallDialog.__name__,
                 [
+                    self.salary_type_step,
                     self.net_gross_step,
                     self.final_step,
                 ],
@@ -32,41 +35,20 @@ class GeneralSalaryDialog(CancelAndHelpDialog):
 
         self.initial_dialog_id = WaterfallDialog.__name__
 
-    async def net_gross_step(
+    async def salary_type_step(
         self, step_context: WaterfallStepContext
     ) -> DialogTurnResult:
-        general_salary_details  = step_context.options
-        if general_salary_details.net is None and general_salary_details.gross is None:
-            message_text = "Please specify if the salary is net, gross  or both:"
-            prompt_message = MessageFactory.text(
-                message_text, message_text, InputHints.expecting_input
-            )
-
-            return await step_context.prompt(
-                TextPrompt.__name__, PromptOptions(prompt=prompt_message)
-            )
-
-        return await step_context.next(general_salary_details.pay_type)
-
-    async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         """
-        Complete the interaction and end the dialog.
+        If a net or gross salary type has not been provided, prompt for one.
         :param step_context:
         :return DialogTurnResult:
         """
         general_salary_details = step_context.options
-        #Capture the results of the previous step
-        general_salary_details.pay_type = step_context.result
-
-        if general_salary_details:
-            get_bonus_text = self.salary_db_handler.get_salary_info(general_salary_details)
-            get_bonus_message = MessageFactory.text(
-                get_bonus_text, get_bonus_text, InputHints.ignoring_input
+        if general_salary_details.salary_type is None:
+            prompt_message = dialog_helper.get_prompt_message(
+                dialog_helper.PromptMessage.SALARY_TYPE_PROMPT_MSG)
+            return await step_context.prompt(
+                TextPrompt.__name__, PromptOptions(prompt=prompt_message)
             )
-            await step_context.context.send_activity(get_bonus_message)
-            return await step_context.end_dialog(salary_details)
-        return await step_context.end_dialog()
 
-    def is_ambiguous(self, timex: str) -> bool:
-        timex_property = Timex(timex)
-        return "definite" not in timex_property.types
+        return await step_context.next(salary_details.pay_type)
