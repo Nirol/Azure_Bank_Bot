@@ -7,6 +7,15 @@
   "tokenizerVersion": "1.0.0",
   "intents": [
     {
+      "name": "Bank.Insurance.All"
+    },
+    {
+      "name": "Bank.Insurance.Earthquake"
+    },
+    {
+      "name": "Bank.Insurance.Health"
+    },
+    {
       "name": "Bank.PayCheck.CheckAvgSalary"
     },
     {
@@ -27,6 +36,10 @@
   ],
   "entities": [
     {
+      "name": "all",
+      "roles": []
+    },
+    {
       "name": "average",
       "roles": []
     },
@@ -39,7 +52,31 @@
       "roles": []
     },
     {
+      "name": "earthquake",
+      "roles": []
+    },
+    {
       "name": "gross",
+      "roles": []
+    },
+    {
+      "name": "health",
+      "roles": []
+    },
+    {
+      "name": "insurance",
+      "roles": []
+    },
+    {
+      "name": "insurance_expense",
+      "roles": []
+    },
+    {
+      "name": "insurance_expire_date",
+      "roles": []
+    },
+    {
+      "name": "insurances",
       "roles": []
     },
     {
@@ -55,76 +92,48 @@
       "roles": []
     },
     {
-      "name": "this month",
-      "roles": []
-    },
-    {
-      "name": "year",
-      "roles": []
-    },
-    {
       "name": "year to date",
-      "roles": []
+      "roles": [
+        "this year"
+      ]
     }
   ],
   "composites": [
     {
-      "name": "Paycheck",
+      "name": "insurance_data_type",
       "children": [
-        "bonus",
-        "Salary",
-        "State tax",
-        "federal tax",
-        "year to date",
-        "average"
-      ],
-      "roles": [
-        "Year to date",
-        "Last"
-      ]
-    },
-    {
-      "name": "tax",
-      "children": [
-        "State tax",
-        "federal tax"
+        "insurance_expense",
+        "insurance_expire_date"
       ],
       "roles": []
     },
     {
-      "name": "type_pay",
+      "name": "insurance_type",
       "children": [
-        "gross",
-        "net"
+        "health",
+        "earthquake"
+      ],
+      "roles": []
+    },
+    {
+      "name": "pay_type",
+      "children": [
+        "net",
+        "gross"
+      ],
+      "roles": []
+    },
+    {
+      "name": "salary_type",
+      "children": [
+        "average",
+        "year to date",
+        "last"
       ],
       "roles": []
     }
   ],
   "closedLists": [
-    {
-      "name": "federal tax",
-      "subLists": [
-        {
-          "canonicalForm": "irs",
-          "list": []
-        },
-        {
-          "canonicalForm": "federal income tax",
-          "list": []
-        }
-      ],
-      "roles": []
-    },
-    {
-      "name": "now",
-      "subLists": [
-        {
-          "canonicalForm": "today",
-          "list": []
-        }
-      ],
-      "roles": []
-    },
     {
       "name": "Salary",
       "subLists": [
@@ -150,23 +159,43 @@
   ],
   "patternAnyEntities": [],
   "regex_entities": [],
-  "prebuiltEntities": [
-    {
-      "name": "dimension",
-      "roles": []
-    },
-    {
-      "name": "money",
-      "roles": []
-    },
-    {
-      "name": "number",
-      "roles": []
-    }
-  ],
+  "prebuiltEntities": [],
   "model_features": [],
   "regex_features": [],
-  "patterns": [],
+  "patterns": [
+    {
+      "pattern": "what was my {last} {Salary}?",
+      "intent": "Bank.PayCheck.CheckLastSalary"
+    },
+    {
+      "pattern": "{last} {gross} {Salary}",
+      "intent": "Bank.PayCheck.CheckLastSalary"
+    },
+    {
+      "pattern": "{all}",
+      "intent": "Bank.Insurance.All"
+    },
+    {
+      "pattern": "{year to date} {Salary}",
+      "intent": "Bank.PayCheck.CheckSalaryYTD"
+    },
+    {
+      "pattern": "{average} {Salary}",
+      "intent": "Bank.PayCheck.CheckAvgSalary"
+    },
+    {
+      "pattern": "{last} {net} {Salary}",
+      "intent": "Bank.PayCheck.CheckLastSalary"
+    },
+    {
+      "pattern": "{last} {bonus}",
+      "intent": "Bank.PayCheck.CheckLastBonus"
+    },
+    {
+      "pattern": "{health} {insurance}",
+      "intent": "Bank.Insurance.Health"
+    }
+  ],
   "utterances": [
     {
       "text": "2 pm meeting tomorrow - who else is going",
@@ -242,6 +271,33 @@
       "text": "add location to favorites",
       "intent": "None",
       "entities": []
+    },
+    {
+      "text": "all",
+      "intent": "Bank.Insurance.All",
+      "entities": [
+        {
+          "entity": "all",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "all insurance policies",
+      "intent": "Bank.Insurance.All",
+      "entities": [
+        {
+          "entity": "all",
+          "startPos": 0,
+          "endPos": 2
+        },
+        {
+          "entity": "insurance",
+          "startPos": 4,
+          "endPos": 12
+        }
+      ]
     },
     {
       "text": "at 10 am do i have a 30 minutes meeting",
@@ -545,6 +601,17 @@
       "entities": []
     },
     {
+      "text": "current gross salary",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 8,
+          "endPos": 12
+        }
+      ]
+    },
+    {
       "text": "decline my meeting on monday",
       "intent": "None",
       "entities": []
@@ -631,6 +698,28 @@
       "entities": []
     },
     {
+      "text": "earthquake insurance details",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "earthquake",
+          "startPos": 0,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "expiredate earthquake",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "insurance_expire_date",
+          "startPos": 0,
+          "endPos": 9
+        }
+      ]
+    },
+    {
       "text": "find a free meeting room for next tuesday",
       "intent": "None",
       "entities": []
@@ -671,6 +760,11 @@
       "entities": []
     },
     {
+      "text": "general salary",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
       "text": "gross avg salary",
       "intent": "Bank.PayCheck.CheckAvgSalary",
       "entities": [
@@ -683,6 +777,80 @@
           "entity": "avg",
           "startPos": 6,
           "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "health insurance",
+      "intent": "Bank.Insurance.Health",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "insurance",
+          "startPos": 7,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "health insurance data",
+      "intent": "Bank.Insurance.Health",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "insurance",
+          "startPos": 7,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "health insurance duration",
+      "intent": "Bank.Insurance.Health",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "insurance",
+          "startPos": 7,
+          "endPos": 15
+        },
+        {
+          "entity": "insurance_expire_date",
+          "startPos": 17,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "health insurance expenses",
+      "intent": "Bank.Insurance.Health",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "insurance",
+          "startPos": 7,
+          "endPos": 15
+        },
+        {
+          "entity": "insurance_expense",
+          "startPos": 17,
+          "endPos": 24
         }
       ]
     },
@@ -893,6 +1061,16 @@
       "entities": []
     },
     {
+      "text": "insurance coverage",
+      "intent": "Bank.Insurance.All",
+      "entities": []
+    },
+    {
+      "text": "insurances",
+      "intent": "Bank.Insurance.All",
+      "entities": []
+    },
+    {
       "text": "is this room busy at 5 pm",
       "intent": "None",
       "entities": []
@@ -921,6 +1099,22 @@
       "text": "join meeting now",
       "intent": "None",
       "entities": []
+    },
+    {
+      "text": "last gross salary",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "gross",
+          "startPos": 5,
+          "endPos": 9
+        }
+      ]
     },
     {
       "text": "last month bonus",
@@ -955,13 +1149,29 @@
       ]
     },
     {
-      "text": "last wage i received",
+      "text": "last month salary",
       "intent": "Bank.PayCheck.CheckLastSalary",
       "entities": [
         {
           "entity": "last",
           "startPos": 0,
           "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "last net salary",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "net",
+          "startPos": 5,
+          "endPos": 7
         }
       ]
     },
@@ -976,6 +1186,17 @@
       "entities": []
     },
     {
+      "text": "list my insurances",
+      "intent": "Bank.Insurance.All",
+      "entities": [
+        {
+          "entity": "insurances",
+          "startPos": 8,
+          "endPos": 17
+        }
+      ]
+    },
+    {
       "text": "list the participants for the 2 pm meeting tomorrow",
       "intent": "None",
       "entities": []
@@ -988,6 +1209,11 @@
     {
       "text": "meeting at 3 pm today locations",
       "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "most recent salary",
+      "intent": "Bank.PayCheck.CheckLastSalary",
       "entities": []
     },
     {
@@ -1062,6 +1288,22 @@
       ]
     },
     {
+      "text": "my gross a salary",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 3,
+          "endPos": 7
+        },
+        {
+          "entity": "year to date",
+          "startPos": 9,
+          "endPos": 9
+        }
+      ]
+    },
+    {
       "text": "my gross average salary",
       "intent": "Bank.PayCheck.CheckAvgSalary",
       "entities": [
@@ -1095,12 +1337,44 @@
     },
     {
       "text": "my gross income",
-      "intent": "Bank.PayCheck.CheckLastSalary",
+      "intent": "Bank.PayCheck.Salary",
       "entities": [
         {
           "entity": "gross",
           "startPos": 3,
           "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "my gross ytd salary",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "gross",
+          "startPos": 3,
+          "endPos": 7
+        },
+        {
+          "entity": "year to date",
+          "startPos": 9,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "my net aaa salary",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 3,
+          "endPos": 5
+        },
+        {
+          "entity": "year to date",
+          "startPos": 7,
+          "endPos": 9
         }
       ]
     },
@@ -1138,7 +1412,18 @@
     },
     {
       "text": "my net income",
-      "intent": "Bank.PayCheck.CheckLastSalary",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": [
+        {
+          "entity": "net",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "my net salary until now",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
       "entities": [
         {
           "entity": "net",
@@ -1153,7 +1438,19 @@
       "entities": []
     },
     {
-      "text": "my salary this year",
+      "text": "my salary this",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "year to date",
+          "role": "this year",
+          "startPos": 10,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "my salary till today",
       "intent": "Bank.PayCheck.CheckSalaryYTD",
       "entities": []
     },
@@ -1163,8 +1460,8 @@
       "entities": []
     },
     {
-      "text": "my total salary till today",
-      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "text": "my total salary",
+      "intent": "Bank.PayCheck.Salary",
       "entities": []
     },
     {
@@ -1320,6 +1617,17 @@
       "entities": []
     },
     {
+      "text": "salary ytd",
+      "intent": "Bank.PayCheck.CheckSalaryYTD",
+      "entities": [
+        {
+          "entity": "year to date",
+          "startPos": 7,
+          "endPos": 9
+        }
+      ]
+    },
+    {
       "text": "save my location on map",
       "intent": "None",
       "entities": []
@@ -1338,6 +1646,138 @@
       "text": "send reminder of 9 am meeting to all participants 15 minutes later",
       "intent": "None",
       "entities": []
+    },
+    {
+      "text": "show all of my insurances",
+      "intent": "Bank.Insurance.All",
+      "entities": [
+        {
+          "entity": "all",
+          "startPos": 5,
+          "endPos": 7
+        },
+        {
+          "entity": "insurances",
+          "startPos": 15,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "show complete salary",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "show earthquake insurance",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "earthquake",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "insurance",
+          "startPos": 16,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "show earthquake insurance expenses",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "earthquake",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "insurance",
+          "startPos": 16,
+          "endPos": 24
+        },
+        {
+          "entity": "insurance_expense",
+          "startPos": 26,
+          "endPos": 33
+        }
+      ]
+    },
+    {
+      "text": "show earthquake insurance expire date",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "earthquake",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "insurance",
+          "startPos": 16,
+          "endPos": 24
+        }
+      ]
+    },
+    {
+      "text": "show full salary",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "show full salary stats",
+      "intent": "Bank.PayCheck.Salary",
+      "entities": []
+    },
+    {
+      "text": "show health insurance",
+      "intent": "Bank.Insurance.Health",
+      "entities": [
+        {
+          "entity": "health",
+          "startPos": 5,
+          "endPos": 10
+        },
+        {
+          "entity": "insurance",
+          "startPos": 12,
+          "endPos": 20
+        }
+      ]
+    },
+    {
+      "text": "show insurance data",
+      "intent": "Bank.Insurance.All",
+      "entities": [
+        {
+          "entity": "insurance",
+          "startPos": 5,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "show insurances info",
+      "intent": "Bank.Insurance.All",
+      "entities": [
+        {
+          "entity": "insurances",
+          "startPos": 5,
+          "endPos": 14
+        }
+      ]
     },
     {
       "text": "show me brenda 's schedule for friday",
@@ -1372,6 +1812,11 @@
     {
       "text": "show my schedule at night",
       "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "show salary details",
+      "intent": "Bank.PayCheck.Salary",
       "entities": []
     },
     {
@@ -1420,25 +1865,9 @@
       "entities": []
     },
     {
-      "text": "this month salary",
-      "intent": "Bank.PayCheck.CheckLastSalary",
-      "entities": [
-        {
-          "entity": "this month",
-          "startPos": 5,
-          "endPos": 9
-        }
-      ]
-    },
-    {
       "text": "this year average salary",
       "intent": "Bank.PayCheck.CheckAvgSalary",
       "entities": [
-        {
-          "entity": "year",
-          "startPos": 5,
-          "endPos": 8
-        },
         {
           "entity": "average",
           "startPos": 10,
@@ -1451,11 +1880,6 @@
       "intent": "Bank.PayCheck.CheckAvgSalary",
       "entities": [
         {
-          "entity": "year",
-          "startPos": 5,
-          "endPos": 8
-        },
-        {
           "entity": "avg",
           "startPos": 10,
           "endPos": 12
@@ -1466,6 +1890,17 @@
       "text": "today ' s lunch will be how long",
       "intent": "None",
       "entities": []
+    },
+    {
+      "text": "total average income",
+      "intent": "Bank.PayCheck.CheckAvgSalary",
+      "entities": [
+        {
+          "entity": "average",
+          "startPos": 6,
+          "endPos": 12
+        }
+      ]
     },
     {
       "text": "total lunch break time today please",
@@ -1496,6 +1931,17 @@
       "text": "update my tomorrow 6pm meeting to 7pm",
       "intent": "None",
       "entities": []
+    },
+    {
+      "text": "volcanic insurance",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "earthquake",
+          "startPos": 0,
+          "endPos": 7
+        }
+      ]
     },
     {
       "text": "what ' s going on this weekend",
@@ -1704,6 +2150,11 @@
       ]
     },
     {
+      "text": "what is my current salary",
+      "intent": "Bank.PayCheck.CheckLastSalary",
+      "entities": []
+    },
+    {
       "text": "what is my schedule for tomorrow",
       "intent": "None",
       "entities": []
@@ -1711,11 +2162,6 @@
     {
       "text": "what is my schedule tomorrow",
       "intent": "None",
-      "entities": []
-    },
-    {
-      "text": "what is my total salary",
-      "intent": "Bank.PayCheck.CheckSalaryYTD",
       "entities": []
     },
     {
@@ -1824,12 +2270,34 @@
     {
       "text": "what was my salary last month",
       "intent": "Bank.PayCheck.CheckLastSalary",
-      "entities": []
+      "entities": [
+        {
+          "entity": "last",
+          "startPos": 19,
+          "endPos": 22
+        }
+      ]
     },
     {
       "text": "what was my wage",
       "intent": "Bank.PayCheck.CheckLastSalary",
       "entities": []
+    },
+    {
+      "text": "whats earthquake insurance monthly fee",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "earthquake",
+          "startPos": 6,
+          "endPos": 15
+        },
+        {
+          "entity": "insurance_expense",
+          "startPos": 35,
+          "endPos": 37
+        }
+      ]
     },
     {
       "text": "what's going on this week",
@@ -1859,7 +2327,7 @@
     },
     {
       "text": "what's my net income",
-      "intent": "Bank.PayCheck.CheckLastSalary",
+      "intent": "Bank.PayCheck.Salary",
       "entities": [
         {
           "entity": "net",
@@ -1903,6 +2371,38 @@
       "text": "when do i work tomorrow",
       "intent": "None",
       "entities": []
+    },
+    {
+      "text": "when earthquake insurance ends",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "earthquake",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "insurance_expire_date",
+          "startPos": 26,
+          "endPos": 29
+        }
+      ]
+    },
+    {
+      "text": "when earthquake insurance expire",
+      "intent": "Bank.Insurance.Earthquake",
+      "entities": [
+        {
+          "entity": "earthquake",
+          "startPos": 5,
+          "endPos": 14
+        },
+        {
+          "entity": "insurance_expire_date",
+          "startPos": 26,
+          "endPos": 31
+        }
+      ]
     },
     {
       "text": "when is my 1st meeting tomorrow",
