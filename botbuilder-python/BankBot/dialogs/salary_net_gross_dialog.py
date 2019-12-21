@@ -1,11 +1,8 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
-from datatypes_date_time.timex import Timex
-
 import dialog_helper
 import salary_details
-import specific_salary_details
+
 import text_from_clients_helper
 import text_to_clients_helper
 from botbuilder.dialogs import WaterfallDialog, WaterfallStepContext, DialogTurnResult

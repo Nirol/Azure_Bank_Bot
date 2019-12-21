@@ -57,7 +57,7 @@ class LuisHelper:
         return intent, result
 
 
-def get_intent(recognizer_result : RecognizerResult) -> str:
+def get_intent(recognizer_result: RecognizerResult) -> str:
     intent = (
         sorted(
             recognizer_result.intents,
@@ -70,9 +70,12 @@ def get_intent(recognizer_result : RecognizerResult) -> str:
     return intent
 
 
-def update_result_entity(recognizer_result : RecognizerResult, result: IndentDetailsABS, entities_list : List[PayType]) -> None:
+def update_result_entity(recognizer_result: RecognizerResult,
+                         result: IndentDetailsABS,
+                         entities_list: List[PayType]) -> None:
     for entity in entities_list:
         entity_found = recognizer_result.entities.get("$instance", {}).get(
             entity.value, [])
         if len(entity_found) > 0:
-            result.update_entity(entity.value, entity_found[0]["text"].capitalize())
+            result.update_entity(entity.value,
+                                 entity_found[0]["text"].capitalize())

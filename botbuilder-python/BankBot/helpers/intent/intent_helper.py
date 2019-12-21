@@ -27,24 +27,28 @@ def is_specific_salary(intent: Intent) -> bool:
 
 from intent.enums.pay_type_enum import PayType
 
-
+#TODO: merge methods
 def specific_salary_entities_list() -> List[PayType]:
     entities_list = [PayType.NET, PayType.GROSS]
     return entities_list
 
 
-def general_salary_entities_list():
+def general_salary_entities_list()-> List[PayType]:
     entities_list = [PayType.NET, PayType.GROSS]
     return entities_list
 
 
-def is_total_salary(salary_type : DBIntent):
-    if salary_type.value == DBIntent.TOTAL.value:
+def is_total_salary(salary_type : DBIntent) -> bool:
+    if salary_type.value == DBIntent.TOTAL.value or salary_type == DBIntent.TOTAL:
         return True
     return False
 
+#TODO : solve enums ambguity usage
 def is_specific_general_salary(db_intent: DBIntent) -> bool:
     if db_intent == DBIntent.LAST.value or db_intent == DBIntent.AVG.value or \
             db_intent == DBIntent.YTD.value:
+        return True
+    elif db_intent == DBIntent.LAST or db_intent == DBIntent.AVG or \
+                db_intent == DBIntent.YTD:
         return True
     return False

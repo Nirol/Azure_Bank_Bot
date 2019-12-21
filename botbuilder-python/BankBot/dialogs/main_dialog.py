@@ -68,8 +68,7 @@ class MainDialog(ComponentDialog):
                 text_to_clients_helper.PromptMessage.WHAT_ELSE_MSG)
         return await step_context.prompt(
             TextPrompt.__name__, PromptOptions(prompt=prompt_entry_message)
-         )
-
+        )
 
     async def act_step(self,
                        step_context: WaterfallStepContext) -> DialogTurnResult:
