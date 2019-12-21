@@ -20,14 +20,13 @@ from botbuilder.core import (
 )
 from botbuilder.schema import Activity
 from db_hardcoded_imp import DBHardcoded
-from dialogs import MainDialog, SalaryNetGrossDialog
+from dialogs import MainDialog, SalaryNetGrossDialog, GeneralSalaryDialog
 from bots import DialogAndWelcomeBot
 
 from adapter_with_error_handler import AdapterWithErrorHandler
 from bank_recognizer import BankRecognizer
-
 # Create the loop and Flask app
-from general_salary_dialog import GeneralSalaryDialog
+
 from salary_data_handler import SalaryDataHandler
 
 LOOP = asyncio.get_event_loop()

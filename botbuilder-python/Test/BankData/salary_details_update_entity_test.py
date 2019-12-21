@@ -1,7 +1,7 @@
 import unittest
 
 
-from salary_details import SalaryDetails
+from specific_salary_details import SalaryDetails
 
 
 class TestUpdateEntity(unittest.TestCase):

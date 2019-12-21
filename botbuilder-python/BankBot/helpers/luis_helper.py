@@ -1,13 +1,16 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-from typing import Dict
+from typing import Dict, List
 
 import intent_helper
 from botbuilder.ai.luis import LuisRecognizer
-from botbuilder.core import IntentScore, TopIntent, TurnContext
+from botbuilder.core import IntentScore, TopIntent, TurnContext, \
+    RecognizerResult
 from general_salary_details import GeneralSalaryDetails
+from intent_details import IndentDetailsABS
 from intent_helper import Intent
-from salary_details import SalaryDetails
+from pay_type_enum import PayType
+from specific_salary_details import SpecificSalaryDetails
 
 
 def top_intent(intents: Dict[Intent, dict]) -> TopIntent:
@@ -37,7 +40,7 @@ class LuisHelper:
             intent = get_intent(recognizer_result)
 
             if intent_helper.is_specific_salary(intent):
-                result = SalaryDetails()
+                result = SpecificSalaryDetails()
                 result.intent = intent
                 update_result_entity(recognizer_result, result,
                                      intent_helper.specific_salary_entities_list())
@@ -54,7 +57,7 @@ class LuisHelper:
         return intent, result
 
 
-def get_intent(recognizer_result):
+def get_intent(recognizer_result : RecognizerResult) -> str:
     intent = (
         sorted(
             recognizer_result.intents,
@@ -67,9 +70,9 @@ def get_intent(recognizer_result):
     return intent
 
 
-def update_result_entity(recognizer_result, result, entities_list):
+def update_result_entity(recognizer_result : RecognizerResult, result: IndentDetailsABS, entities_list : List[PayType]) -> None:
     for entity in entities_list:
         entity_found = recognizer_result.entities.get("$instance", {}).get(
-            entity, [])
+            entity.value, [])
         if len(entity_found) > 0:
-            result.update_entity(entity, entity_found[0]["text"].capitalize())
+            result.update_entity(entity.value, entity_found[0]["text"].capitalize())

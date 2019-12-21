@@ -6,5 +6,5 @@ class IndentDetailsABS(ABC):
         self.value = value
         super().__init__()
 
-    def update_entity(self, entity_name, entity_value):
+    def update_entity(self, entity_name : str, entity_value : str)-> None:
         self.__dict__[entity_name] = entity_value
