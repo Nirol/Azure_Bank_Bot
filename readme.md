@@ -11,7 +11,7 @@
      every salary intent.
      
 
-<div style="text-align:center"><img src="bot_example1.png" width="480"></div>
+<div style="text-align:center"><img src="bot_example1.PNG" width="480"></div>
 
 * **Follow up dialogs for different intents, completing  
  required information**
@@ -23,7 +23,7 @@
       answers, covering for spelling mistakes.
     
 
-<div style="text-align:center"><img src="bot_example2.png"  width="480"></div>
+<div style="text-align:center"><img src="/bot_example2.PNG"  width="480"></div>
 
  
     
