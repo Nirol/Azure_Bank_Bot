@@ -30,13 +30,14 @@
  
 ## Running the code
 
-* Main python script function located in [botbuilder-python/BankBot/app.py](botbuilder-python/BankBot/app.py)  
+* Main python script function located in [app.py](botbuilder-python/BankBot/app.py)  
 
  * ***best Practice in order to load the project is to add the root folder  
   (folder play_with_azure) as a project to pycharm***
   
   
- * required dependencies libraries are detaild in [botbuilder-python/BankBot/requirements.txt](botbuilder-python/BankBot/requirements.txt)
+ * required dependencies libraries are detaild in [requirements.txt](botbuilder-python/BankBot/requirements.txt)
   install dependecies using:
    ```
     use pip install -r requirements.txt 
+* Insert required Microsoft Azure account details to the [config.py](botbuilder-python/BankBot/config.py) file
